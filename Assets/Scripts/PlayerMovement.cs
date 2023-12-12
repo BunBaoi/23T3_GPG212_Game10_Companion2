@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         rotation();
         sprint();
 
+
     }
 
     void movement()

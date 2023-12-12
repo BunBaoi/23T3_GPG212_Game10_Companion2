@@ -11,6 +11,9 @@ public class UiWheelController : MonoBehaviour
     public Sprite noImage;
     public static int statusID;
 
+    [Header("Audio")]
+    //public AudioSource audioData;
+
     [Header("Player Information")]
     public GameObject player;
     //public GameObject companionScript;
@@ -28,7 +31,7 @@ public class UiWheelController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
 
-            //player.gameObject.GetComponent<PlayerMovement>().enabled = false;
+            player.gameObject.GetComponent<PlayerMovement>().enabled = false;
         }
         else
         {
@@ -62,6 +65,7 @@ public class UiWheelController : MonoBehaviour
             case 4: // Interact
                 Debug.Log("Case Talk that talk");
                 companionScript.state = CompanionScript.State.talking;
+                //audioData.Play();
                 break;
         }
     }

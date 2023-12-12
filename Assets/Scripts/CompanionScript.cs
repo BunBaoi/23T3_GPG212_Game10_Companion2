@@ -34,6 +34,7 @@ public class CompanionScript : MonoBehaviour
 
     [Header("Audio")]
     public AudioSource audioData;
+    public AudioSource whistle;
 
     //public ControllerMode Mode;
     public Transform goal;
@@ -76,6 +77,22 @@ public class CompanionScript : MonoBehaviour
             
         }
         */
+        if (Input.GetKeyDown("f"))
+        {
+            switch(state)
+            {
+                case State.follow:
+                    dest = player.position;
+                    ai.destination = dest;
+                    whistle.Play();
+                    Debug.Log("Companion Called");
+                    break;
+            }
+
+
+        }
+
+
 
         switch(state)
         {
@@ -100,9 +117,13 @@ public class CompanionScript : MonoBehaviour
 
             // Talking audio
             case State.talking:
-                audioData.Play();
+                //audioData.Play();
                 Debug.Log("Talking");
                 break;
+        }
+        if(state == State.talking)
+        {
+            audioData.Play();
         }
 
 
