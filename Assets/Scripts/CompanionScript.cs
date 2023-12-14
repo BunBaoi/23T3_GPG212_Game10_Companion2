@@ -13,6 +13,7 @@ public class CompanionScript : MonoBehaviour
     public Transform player;
     public Animator companionAni;
     Vector3 dest;
+    Vector3 local;
 
     public enum State
     {
@@ -31,9 +32,10 @@ public class CompanionScript : MonoBehaviour
 
     [Header("UI Menu")]
     public UiWheelController uiWheelController;
+    public static int statusID;
 
     [Header("Audio")]
-    public AudioSource audioData;
+    //public AudioSource audioData;
     public AudioSource whistle;
 
     //public ControllerMode Mode;
@@ -42,7 +44,7 @@ public class CompanionScript : MonoBehaviour
     public void Start()
     {
         //SetMode(ControllerMode.Play);
-        state = State.going;
+        state = State.idle;
 
     }
 
@@ -79,15 +81,10 @@ public class CompanionScript : MonoBehaviour
         */
         if (Input.GetKeyDown("f"))
         {
-            switch(state)
-            {
-                case State.follow:
-                    dest = player.position;
-                    ai.destination = dest;
-                    whistle.Play();
-                    Debug.Log("Companion Called");
-                    break;
-            }
+            whistle.Play();
+            dest = player.position;
+            ai.destination = dest;
+            Debug.Log("Following");
 
 
         }
@@ -111,7 +108,8 @@ public class CompanionScript : MonoBehaviour
             // Going to location
             case State.going:
                 //ai.SetDestination(goal.position);
-                ai.destination = goal.position;
+                local = goal.position;
+                ai.destination = local;
                 Debug.Log("Going");
                 break;
 
@@ -121,12 +119,6 @@ public class CompanionScript : MonoBehaviour
                 Debug.Log("Talking");
                 break;
         }
-        if(state == State.talking)
-        {
-            audioData.Play();
-        }
-
-
     }
 
     // Menu on companion

@@ -12,7 +12,7 @@ public class UiWheelController : MonoBehaviour
     public static int statusID;
 
     [Header("Audio")]
-    //public AudioSource audioData;
+    public AudioSource audioData;
 
     [Header("Player Information")]
     public GameObject player;
@@ -64,8 +64,8 @@ public class UiWheelController : MonoBehaviour
                 break;
             case 4: // Interact
                 Debug.Log("Case Talk that talk");
+                audioData.Play();
                 companionScript.state = CompanionScript.State.talking;
-                //audioData.Play();
                 break;
         }
     }
